@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NoName-31/dleco.git"
+    "url": "git+https://github.com/NoName-31/DLeco.git"
   },
   "keywords": [
     "mongo",
@@ -24,7 +24,7 @@
   "author": "NoName31",
   "license": "Apache License 2.0",
   "bugs": {
-    "url": "https://github.com/NoName-31/dleco/issues"
+    "url": "https://github.com/NoName-31/DLeco/issues"
   },
-  "homepage": "https://github.com/NoName-31/dleco"
+  "homepage": "https://github.com/NoName-31/DLeco"
 }
