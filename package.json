@@ -1,0 +1,30 @@
+{
+  "name": "dleco",
+  "version": "1.0.0",
+  "description": "Economy system for DiscordJS using MongoDB",
+  "main": "index.js",
+  "dependencies": {
+    "mongoose": "^6.0.12"
+  },
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NoName-31/dleco.git"
+  },
+  "keywords": [
+    "mongo",
+    "discord",
+    "DiscordJS",
+    "Discord",
+    "Bot",
+    "currency"
+  ],
+  "author": "NoName31",
+  "license": "Apache License 2.0",
+  "bugs": {
+    "url": "https://github.com/NoName-31/dleco/issues"
+  },
+  "homepage": "https://github.com/NoName-31/dleco"
+}
