@@ -248,15 +248,15 @@ class dlEco {
         let prob = Math.floor(Math.random() * 100);
         if(prob <= probToSuccess){
             let amount = getPercent(percent);
-            user1 += amount;
-            user2 -= amount;
+            user1.wallet += amount;
+            user2.wallet -= amount;
             user1.save();
             user2.save();
             return true;
         } else {
             let amount = getPercent(percent);
-            user1 -= amount
-            user2 += amount
+            user1.wallet -= amount
+            user2.wallet += amount
             user1.save();
             user2.save();
             return false;
