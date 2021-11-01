@@ -216,5 +216,51 @@ class dlEco {
             user2.save();
         }
     }
+
+    static async rob(userId, userId2, guildId, percent, percent2){
+        if(!userId) throw new Error('Invalid user ID');
+        if(!guildId) throw new Error('Invalid guild ID');
+        if(!percent) throw new Error('Invalid percent');
+        if(isNaN(percent)) throw new Error('Invalid percent');
+        if(percent < 0) throw new Error('Invalid percent');
+        if(!userId2) throw new Error('Invalid user2 ID');
+        if(percent2 > 100) throw new Error('Probability must be below 100');
+
+        function getPercent(percent){
+            let balance = dlEco.getBalance(userId2, guildId);
+            let amounToRob = (percent / 100) * balance.wallet;
+            return amounToRob;
+        }
+
+        const user1 = await schema.findOne({ user: userId, guild: guildId }).exec();
+        const user2 = await schema.findOne({ user: userId2, guild: guildId }).exec();
+        if(!user2){
+            const newWallet = new schema({
+                user: userId2,
+                guild: guildId,
+                bank: 0,
+                wallet: 0
+            });
+            newWallet.save();
+            }
+        if(user2.balance === 0) throw new Error('No money');
+        let probToSuccess = percent2;
+        let probToFail = probToSuccess - 100;
+        let prob = Math.floor(Math.random() * 100);
+        if(prob <= probToSuccess){
+            let amount = getPercent(percent);
+            user1 += amount;
+            user2 -= amount;
+            user1.save();
+            user2.save();
+            return true;
+        } else {
+            user1 -= amount
+            user2 += amount
+            user1.save();
+            user2.save();
+            return false;
+        }
+    }
 }
 module.exports = dlEco;
