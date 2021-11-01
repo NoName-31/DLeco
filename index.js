@@ -177,7 +177,7 @@ class dlEco {
                 bank: 0,
                 wallet: 0
             });
-            newWallet.save();
+            await newWallet.save();
             return data;
         } else {
             return data;
