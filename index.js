@@ -169,7 +169,7 @@ class dlEco {
         if(!userId) throw new Error('Invalid user ID');
         if(!guildId) throw new Error('Invalid guild ID');
 
-        const data = await schema.findOne({ user: userId, guild: guildId }).exec();
+        const data = schema.findOne({ user: userId, guild: guildId }).exec();
         if(!data){
             const newWallet = new schema({
                 user: userId,
