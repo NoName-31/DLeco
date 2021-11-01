@@ -7,7 +7,7 @@ Economy system for DiscordJS using MongoDB
 Pay method!
 ```javascript
 //Parameters
-// first user(user who wants to pay)
+//first user(user who wants to pay)
 //2nd user(user who wants to get money)
 //guildId
 //amount
