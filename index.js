@@ -245,7 +245,6 @@ class dlEco {
             }
         if(user2.balance === 0) throw new Error('No money');
         let probToSuccess = percent2;
-        let probToFail = probToSuccess - 100;
         let prob = Math.floor(Math.random() * 100);
         if(prob <= probToSuccess){
             let amount = getPercent(percent);
@@ -255,6 +254,7 @@ class dlEco {
             user2.save();
             return true;
         } else {
+            let amount = getPercent(percent);
             user1 -= amount
             user2 += amount
             user1.save();
