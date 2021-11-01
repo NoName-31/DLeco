@@ -179,8 +179,9 @@ class dlEco {
             });
             newWallet.save();
             return data;
+        } else {
+            return data;
         }
-        return data;
     }
 
     static async pay(userId, userId2, guildId, amount){
