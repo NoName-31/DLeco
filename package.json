@@ -1,6 +1,6 @@
 {
   "name": "dleco",
-  "version": "1.0.0",
+  "version": "1.0.5",
   "description": "Economy system for DiscordJS using MongoDB",
   "main": "index.js",
   "dependencies": {
