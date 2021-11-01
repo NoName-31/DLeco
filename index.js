@@ -178,6 +178,7 @@ class dlEco {
                 wallet: 0
             });
             newWallet.save();
+            return data;
         }
         return data;
     }
