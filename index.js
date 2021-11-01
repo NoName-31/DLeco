@@ -5,7 +5,7 @@
 const mongodb = require("mongoose");
 const schema = require('./model/currency');
 
-class dEco {
+class dlEco {
     static async connect(uri) {
         if(!uri) throw new typeError("[EcoNM] - Invalid URI");
         try {
@@ -55,7 +55,7 @@ class dEco {
                     const newWallet = new schema({
                         user: userId,
                         guild: guildId,
-                        bank: 0,
+                        bank: 50,
                         wallet: 0
                     });
                     newWallet.save();
@@ -103,7 +103,7 @@ class dEco {
                 const newWallet = new schema({
                     user: userId,
                     guild: guildId,
-                    bank: 0,
+                    bank: 50,
                     wallet: 0
                 });
                 newWallet.save();
@@ -128,7 +128,7 @@ class dEco {
                 const newWallet = new schema({
                     user: userId,
                     guild: guildId,
-                    bank: 0,
+                    bank: 50,
                     wallet: 0
                 });
                 newWallet.save();
@@ -153,7 +153,7 @@ class dEco {
                 const newWallet = new schema({
                     user: userId,
                     guild: guildId,
-                    bank: 0,
+                    bank: 50,
                     wallet: 0
                 });
                 newWallet.save();
@@ -173,5 +173,48 @@ class dEco {
         if(!data) return 0;
         return data;
     }
+
+    static async pay(userId, userId2, guildId, amount){
+        if(!userId) throw new Error('Invalid user ID');
+        if(!guildId) throw new Error('Invalid guild ID');
+        if(!amount) throw new Error('Invalid amount');
+        if(isNaN(amount)) throw new Error('Invalid amount');
+        if(amount < 0) throw new Error('Invalid amount');
+        if(!userId2) throw new Error('Invalid user2 ID');
+
+        
+        const data = await schema.findOne({ user: userId, guild: guildId }).exec();
+        if(!data){
+            const newWallet = new schema({
+                user: userId,
+                guild: guildId,
+                bank: 0,
+                wallet: 0
+            });
+            newWallet.save();
+            throw new Error('no money');
+        }
+        if(data){
+            data.wallet -= parseInt(amount);
+            data.save();
+        }
+        if(data.wallet < amount) throw new Error('Not enough money');
+
+
+        const user2 = await schema.findOne({ user: userId2, guild: guildId }).exec();
+        if(!user2){
+            const newWallet = new schema({
+                user: userId2,
+                guild: guildId,
+                bank: 0,
+                wallet: parseInt(amount)
+            });
+            newWallet.save();
+        }
+        if(user2){
+            user2.wallet += amount;
+            user2.save();
+        }
+    }
 }
-module.exports = dEco;
+module.exports = dlEco;
