@@ -3,12 +3,37 @@
 
 Economy system for DiscordJS using MongoDB
 
+## New!
+Pay method!
+```javascript
+//Parameters
+// first user(user who wants to pay)
+//2nd user(user who wants to get money)
+//guildId
+//amount
 
+//legacy
+let user1 = message.author.id;
+let user2 = message.mentions.users.first();
+let guildId = message.guild.id;
+let amount = parseInt(args[0]); // or any amount (let amount = 1000;)
+dl.pay(user1, user2, guildId, amount);
+
+
+//slash
+let user1 = interaction.member.id
+//here you will need to create a .addUserOption method whitin your command
+let user2 = interaction.options.getUser('user')
+let guild = interaction.guildId
+let amount = interaction.options.getNumber('amount') // or any amount (let amount = 1000;)
+dl.pay(user1, user2, guild, amount);
+
+```
 
 ## Usage/Examples
 Using your DB
 ```javascript
-//declaring deco
+//declaring dleco
 const dl = require('dleco');
 
 dl.connect('URI')
