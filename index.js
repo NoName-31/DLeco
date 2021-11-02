@@ -236,7 +236,7 @@ class dlEco {
           }
         const rndInt = randomIntFromInterval(minAmount, maxAmount);
         const random = Math.floor(Math.random() * 6) + 1;
-        const result;
+        let result;
         if(random > 3){
             user2.wallet -= rndInt;
             user2.save();
