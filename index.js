@@ -242,13 +242,13 @@ class dlEco {
             user.wallet += rndInt;
             user.save();
             user2.save();
-            return result = false;
+            return result = true;
         } else {
-            user2.wallet += rndInt;
             user.wallet -= rndInt;
+            user2.wallet += rndInt;
             user.save();
             user2.save();
-            return result = true;
+            return result = false;
         }
     }
 }
