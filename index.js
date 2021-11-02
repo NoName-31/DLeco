@@ -239,15 +239,15 @@ class dlEco {
         let result;
         if(random > 3){
             user2.wallet -= rndInt;
-            user2.save();
             user.wallet += rndInt;
             user.save();
+            user2.save();
             return result = false;
         } else {
             user2.wallet += rndInt;
-            user2.save();
             user.wallet -= rndInt;
             user.save();
+            user2.save();
             return result = true;
         }
     }
