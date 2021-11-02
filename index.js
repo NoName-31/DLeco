@@ -170,18 +170,8 @@ class dlEco {
         if(!guildId) throw new Error('Invalid guild ID');
 
         const data = schema.findOne({ user: userId, guild: guildId }).exec();
-        if(!data){
-            const newWallet = new schema({
-                user: userId,
-                guild: guildId,
-                bank: 0,
-                wallet: 0
-            });
-            await newWallet.save();
-            return data;
-        } else {
-            return data;
-        }
+        if(!data) return 0;
+        return data;
     }
 
     static async pay(userId, userId2, guildId, amount){
@@ -224,6 +214,38 @@ class dlEco {
         if(user2){
             user2.wallet += amount;
             user2.save();
+        }
+    }
+
+    static async rob(userId, userId2, guildId, maxAmount, minAmount){
+        if(!userId) throw new Error('Invalid user ID');
+        if(!guildId) throw new Error('Invalid guild ID');
+        if(!maxAmount) throw new Error('Invalid max amount');
+        if(isNaN(maxAmount)) throw new Error('Invalid max amount');
+        if(maxAmount < 0) throw new Error('Invalid max amount');
+        if(!userId2) throw new Error('Invalid user2 ID');
+        const user = await schema.findOne({ user: userId, guild: guildId }).exec();
+        const user2 = await schema.findOne({ user: userId2, guild: guildId }).exec();
+        if(!user) throw new Error('User1 does not exists');
+        if(!user2) throw new Error('User2 does not exists');
+
+        if(user.wallet < minAmount) throw new Error('Not enough money');
+        if(user2.wallet < minAmount) throw new Error('Not enough money');
+        function randomIntFromInterval(min, max) {
+            return Math.floor(Math.random() * (max - min + 1) + min)
+          }
+        const rndInt = randomIntFromInterval(minAmount, maxAmount);
+        const random = Math.floor(Math.random() * 6) + 1;
+        if(random > 3){
+            user2.wallet -= rndInt;
+            user2.save();
+            user.wallet += rndInt;
+            user.save();
+        } else {
+            user2.wallet += rndInt;
+            user2.save();
+            user.wallet -= rndInt;
+            user.save();
         }
     }
 }
