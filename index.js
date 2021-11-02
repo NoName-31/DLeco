@@ -217,7 +217,7 @@ class dlEco {
         }
     }
 
-    static async rob(userId, userId2, guildId, maxAmount, minAmount){
+    static async rob(userId, userId2, guildId, minAmount, maxAmount){
         if(!userId) throw new Error('Invalid user ID');
         if(!guildId) throw new Error('Invalid guild ID');
         if(!maxAmount) throw new Error('Invalid max amount');
@@ -236,16 +236,19 @@ class dlEco {
           }
         const rndInt = randomIntFromInterval(minAmount, maxAmount);
         const random = Math.floor(Math.random() * 6) + 1;
+        const result;
         if(random > 3){
             user2.wallet -= rndInt;
             user2.save();
             user.wallet += rndInt;
             user.save();
+            return result = true;
         } else {
             user2.wallet += rndInt;
             user2.save();
             user.wallet -= rndInt;
             user.save();
+            return result = false;
         }
     }
 }
