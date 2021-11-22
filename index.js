@@ -55,7 +55,7 @@ class dlEco {
                     const newWallet = new schema({
                         user: userId,
                         guild: guildId,
-                        bank: 50,
+                        bank: 0,
                         wallet: 0
                     });
                     newWallet.save();
@@ -103,7 +103,7 @@ class dlEco {
                 const newWallet = new schema({
                     user: userId,
                     guild: guildId,
-                    bank: 50,
+                    bank: 0,
                     wallet: 0
                 });
                 newWallet.save();
@@ -128,7 +128,7 @@ class dlEco {
                 const newWallet = new schema({
                     user: userId,
                     guild: guildId,
-                    bank: 50,
+                    bank: 0,
                     wallet: 0
                 });
                 newWallet.save();
@@ -153,7 +153,7 @@ class dlEco {
                 const newWallet = new schema({
                     user: userId,
                     guild: guildId,
-                    bank: 50,
+                    bank: 0,
                     wallet: 0
                 });
                 newWallet.save();
@@ -170,7 +170,19 @@ class dlEco {
         if(!guildId) throw new Error('Invalid guild ID');
 
         const data = await schema.findOne({ user: userId, guild: guildId }).exec();
-        if(!data) return 0;
+        if(!data){
+            const newWallet = new schema({
+                user: userId,
+                guild: guildId,
+                bank: 0,
+                wallet: 0
+            });
+            newWallet.save();
+            return {
+                bank: 0,
+                wallet: 0
+            };
+        }
         return data;
     }
 
@@ -192,7 +204,6 @@ class dlEco {
                 wallet: 0
             });
             newWallet.save();
-            throw new Error('no money');
         }
         if(data){
             data.wallet -= parseInt(amount);
