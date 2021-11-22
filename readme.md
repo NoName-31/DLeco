@@ -1,7 +1,7 @@
 
 # dleco
 
-Economy system for DiscordJS using MongoDB
+Economy system for DiscordJS using MongoDB\
 [![NPM](https://nodei.co/npm/dleco.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/dleco/)
 [![npm version](https://badge.fury.io/js/dleco.svg)](https://badge.fury.io/js/dleco)
 
